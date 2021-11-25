@@ -5,6 +5,8 @@ using namespace std;
 
 Node::Node(int v) {
   this->setValue(v);
+  this->setLeftNode(nullptr);
+  this->setRightNode(nullptr);
 }
 
 Node::~Node() {}
