@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+//NOTE: Feel free to add any functions I did not cover.
+
 class AVLTree {
  public:
    /**
@@ -12,7 +14,7 @@ class AVLTree {
    AVLTree();
 
    /**
-   * Constructor for AVLTree. Takes in a list of values to be created into Nodes..
+   * Constructor for AVLTree. Takes in an array of integers to be created into Nodes..
    */
    AVLTree(int values[]);
 
@@ -62,9 +64,9 @@ class AVLTree {
    void rightLeftRotation();
 
    /**
-   * Sets the passed node as the root (Could just pass the value instead)
+   * Sets the passed node as the root (Could just pass the value instead maybe?)
    */
-   void setRoot();
+   void setRoot(Node* node);
 
    /**
    * Sets the current height of the tree.
