@@ -7,9 +7,10 @@ class Node {
  public:
 
    /**
-   *  Constructor for Node. Has 1 parameter for the value of the node.
+   * Constructor for Node. Has 2 parameterS, for the value of the node
+   * and the height of the Node.
    */
-    Node(int v);
+    Node(int v, int h);
 
     /**
     * Desctructor for Node.
@@ -49,12 +50,12 @@ class Node {
     /**
     * Returns the Left Node.
     */
-    int getLeftNode();
+    Node* getLeftNode();
 
     /**
     * Returns the Right Node.
     */
-    int getRightNode();
+    Node* getRightNode();
 
  private:
    int value;
