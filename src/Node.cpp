@@ -3,27 +3,26 @@
 #include <string>
 using namespace std;
 
-Node::Node(int v, int h) {
-  this.setValue(v);
-  this.setHeight(h);
+Node::Node(int v) {
+  this->setValue(v);
 }
 
 Node::~Node() {}
 
 void Node::setValue(int v) {
-  this.value = v;
+  this->value = v;
 }
 
 void Node::setHeight(int h) {
-  this.height = h;
+  this->height = h;
 }
 
 void Node::setLeftNode(Node* ln) {
-  this.leftNode = ln;
+  this->leftNode = ln;
 }
 
 void Node::setRightNode(Node* rn) {
-  this.rightNode = rn;
+  this->rightNode = rn;
 }
 
 int Node::getValue() {

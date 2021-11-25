@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Node.h"
-#include "AVLTree.h"
+#include "../include/Node.h"
+#include "../include/AVLTree.h"
 #include <string>
 using namespace std;
 
@@ -15,14 +15,29 @@ AVLTree::AVLTree(int values[]) {
 AVLTree::~AVLTree() {}
 
 void AVLTree::insert(int val) {
-  
+  Node* newNode = new Node(val);
+  int treeHeight = this->getHeight();
+  if (treeHeight == 0) {
+    newNode->setHeight(1);
+  }
+
+  this->balance();
 }
 
 void AVLTree::remove(int val) {}
 
-bool AVLTree::search(int val) {}
+bool AVLTree::search(int val) {
+  return false;
+}
 
-void AVLTree::balance() {}
+void AVLTree::balance() {
+  Node* visitedNode = this->getRoot();
+
+  if (visitedNode->getLeftNode() == NULL && visitedNode->getRightNode() == NULL) {
+    this->setHeight(visitedNode->getHeight());
+  }
+
+}
 
 void AVLTree::leftRotation() {}
 
@@ -33,11 +48,11 @@ void AVLTree::leftRightRotation() {}
 void AVLTree::rightLeftRotation() {}
 
 void AVLTree::setRoot(Node* node) {
-  this.rootNode = node;
+  this->rootNode = node;
 }
 
 void AVLTree::setHeight(int h) {
-  this.height = h;
+  this->height = h;
 }
 
 Node* AVLTree::getRoot() {

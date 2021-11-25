@@ -5,4 +5,13 @@
 using namespace std;
 int main() {
   cout << "HELLO WORLD" << endl;
+
+  AVLTree* tree = new AVLTree();
+
+  //tree->insert(1);
+
+  //int treeHeight = tree->getHeight();
+  //cout << "Height of tree: " << treeHeight << endl;
+
+  delete tree;
 }

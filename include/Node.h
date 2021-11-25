@@ -7,10 +7,9 @@ class Node {
  public:
 
    /**
-   * Constructor for Node. Has 2 parameterS, for the value of the node
-   * and the height of the Node.
+   * Constructor for Node. Has 1 parameter for the value of the node.
    */
-    Node(int v, int h);
+    Node(int v);
 
     /**
     * Desctructor for Node.
