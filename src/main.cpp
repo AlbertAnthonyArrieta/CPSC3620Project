@@ -1,6 +1,8 @@
 #include <iostream>
 #include "../include/Node.h"
 #include "../include/AVLTree.h"
+#include "AVLTree.cpp"
+#include "Node.cpp"
 #include <string>
 using namespace std;
 int main() {
