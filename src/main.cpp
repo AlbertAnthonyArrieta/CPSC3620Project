@@ -5,17 +5,16 @@
 #include <string>
 using namespace std;
 int main() {
-  cout << "HELLO WORLD" << endl;
+  cout << "WELCOME TO AVL TREE" << endl;
   AVLTree* tree = new AVLTree();
 
-  tree->insert(5);
+  tree->insert(tree->getRoot(), 5);
 
-  int treeHeight = tree->getHeight();
-  Node* root = tree->getRoot();
-  int rootVal = root->getValue();
-  cout << "Height of tree: " << treeHeight << endl;
-  cout << "Root Node: " << rootVal << endl;
-
+  //expecting to be 1
+  cout << "Tree Height: " << tree->getHeight() << endl;
+  //expecting to be 5
+  cout << "Tree Root: " << tree->getRoot()->getValue() << endl;
 
   delete tree;
 }
+//CURRENT TASK: change the height of tree correctly

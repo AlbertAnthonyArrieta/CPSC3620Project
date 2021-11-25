@@ -25,18 +25,19 @@ class AVLTree {
 
    /**
    * Create and insert a new node holding the value of the passed argument.
+   * This will be a recursive method and will need a node to visit.
    */
-   void insert(int val);
+   void insert(Node* visitedNode, unsigned int val);
 
    /**
    * Remove the node with the value of the passed argument.
    */
-   void remove(int val);
+   void remove(unsigned int val);
 
    /**
    * Searches for the node in the tree. Returns true if found. False otherwise.
    */
-   bool search(int val);
+   bool search(unsigned int val);
 
    /**
    * Checks and balances tree with the use of rotations.
@@ -71,7 +72,7 @@ class AVLTree {
    /**
    * Sets the current height of the tree.
    */
-   void setHeight(int h);
+   void setHeight(unsigned int h);
 
    /**
    * Returns the root node.
@@ -81,10 +82,10 @@ class AVLTree {
    /**
    * Returns the height of the tree.
    */
-   int getHeight();
+   unsigned int getHeight();
 
  private:
-   int height;
+   unsigned int height;
    Node* rootNode;
 };
 
