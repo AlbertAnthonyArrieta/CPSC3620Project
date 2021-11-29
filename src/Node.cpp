@@ -3,19 +3,20 @@
 #include <string>
 using namespace std;
 
-Node::Node(unsigned int v) {
+Node::Node(int v) {
   this->setValue(v);
-  this->setLeftNode(nullptr);
-  this->setRightNode(nullptr);
+  this->setLeftNode(NULL);
+  this->setRightNode(NULL);
+  this->setHeight(1);
 }
 
 Node::~Node() {}
 
-void Node::setValue(unsigned int v) {
+void Node::setValue(int v) {
   this->value = v;
 }
 
-void Node::setHeight(unsigned int h) {
+void Node::setHeight(int h) {
   this->height = h;
 }
 
@@ -27,11 +28,11 @@ void Node::setRightNode(Node* rn) {
   this->rightNode = rn;
 }
 
-unsigned int Node::getValue() {
+int Node::getValue() {
   return value;
 }
 
-unsigned int Node::getHeight() {
+int Node::getHeight() {
   return height;
 }
 

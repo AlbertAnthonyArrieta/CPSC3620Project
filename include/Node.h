@@ -9,7 +9,7 @@ class Node {
    /**
    * Constructor for Node. Has 1 parameter for the value of the node.
    */
-    Node(unsigned int v);
+    Node(int v);
 
     /**
     * Desctructor for Node.
@@ -19,12 +19,12 @@ class Node {
     /**
     * Sets Node value to the integer argument passed.
     */
-    void setValue(unsigned int v);
+    void setValue(int v);
 
     /**
     * Sets Node height to the integer argument passed.
     */
-    void setHeight(unsigned int h);
+    void setHeight(int h);
 
     /**
     * Sets leftNode to the Node argument passed.
@@ -39,12 +39,12 @@ class Node {
     /**
     * Returns value.
     */
-    unsigned int getValue();
+    int getValue();
 
     /**
     * Returns Height.
     */
-    unsigned int getHeight();
+    int getHeight();
 
     /**
     * Returns the Left Node.
@@ -62,8 +62,8 @@ class Node {
     bool hasChildren();
 
  private:
-   unsigned int value;
-   unsigned int height;
+   int value;
+   int height;
    Node* leftNode;
    Node* rightNode;
 };
