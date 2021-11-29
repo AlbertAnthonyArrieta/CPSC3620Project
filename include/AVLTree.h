@@ -48,22 +48,12 @@ class AVLTree {
    /**
    * Left rotation algorithm.
    */
-   void leftRotation();
+   Node* leftRotation();
 
    /**
    * Right rotation algorithm
    */
-   void rightRotation();
-
-   /**
-   * Left-Right Rotation algorithm
-   */
-   void leftRightRotation();
-
-   /**
-   * RightLeftRotation algorithm
-   */
-   void rightLeftRotation();
+   Node* rightRotation();
 
    /**
    * Sets the passed node as the root (Could just pass the value instead maybe?)
@@ -85,6 +75,9 @@ class AVLTree {
    */
    int getHeight();
 
+   /**
+   *  A small operation that compares 2 integers and returns the higher value.
+   */
    int getMax(int a, int b);
 
  private:
