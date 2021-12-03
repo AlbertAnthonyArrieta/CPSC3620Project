@@ -66,6 +66,26 @@ struct Node {
     return visitedNode;
   }
 
+  // Node* remove(Node* visitedNode, int val) {
+  //
+  // }
+
+  bool search(Node* visitedNode, int val) {
+      if (visitedNode == NULL) {
+        cout << "NODE NOT FOUND" << endl;
+        return false;
+      }
+
+      if (visitedNode->value > val) {
+        return search(visitedNode->left, val);
+      } else if (visitedNode->value < val) {
+        return search(visitedNode->right, val);
+      } else if(visitedNode->value == val) {
+        cout << "NODE FOUND" << endl;
+        return true;
+      }
+    }
+
   int getHeight() {
     if (this == NULL) {
       return 0;
@@ -89,9 +109,6 @@ struct Node {
     //rotation
     tempNode1->left = n;
     n->right = tempNode2;
-    cout << "LEFT ROTATED!!" << endl;
-    cout << "Left of t1: " << tempNode1->left->value <<endl;
-    cout << "Right of t1: " << tempNode1->right->value <<endl;
     //change heights
     Node* nLeftNode = n->left;
     Node* nRightNode = n->right;
@@ -124,6 +141,10 @@ struct Node {
     return tempNode1;
   }
 
+  void displayTree(Node* node) {
+    //Display the structure of the tree.
+  }
+
 };
 
 int main() {
@@ -139,9 +160,12 @@ int main() {
   root = root->insert(root, 1);
 
 
+
   cout << "=========================" << endl;
   cout << "Root: " << root->value << " Height: " << root->height << endl;
   cout << "Right: " << root->right->value << endl;
   cout << "Left: " << root->left->value << endl;
   cout << "LeftLeft: " << root->right->right->value << endl;
+
+  root-> search(root, 50);
 }
