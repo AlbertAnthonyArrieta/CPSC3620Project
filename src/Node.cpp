@@ -3,29 +3,29 @@
 #include <string>
 using namespace std;
 
+Node::Node() {
+}
+
 Node::Node(int v) {
   this->setValue(v);
-  this->setLeftNode(NULL);
-  this->setRightNode(NULL);
-  this->setHeight(1);
 }
 
 Node::~Node() {}
 
 void Node::setValue(int v) {
-  this->value = v;
+  value = v;
 }
 
 void Node::setHeight(int h) {
-  this->height = h;
+  height = h;
 }
 
 void Node::setLeftNode(Node* ln) {
-  this->leftNode = ln;
+  leftNode = ln;
 }
 
 void Node::setRightNode(Node* rn) {
-  this->rightNode = rn;
+  rightNode = rn;
 }
 
 int Node::getValue() {
@@ -42,12 +42,4 @@ Node* Node::getLeftNode() {
 
 Node* Node::getRightNode() {
   return rightNode;
-}
-
-bool Node::hasChildren() {
-  if (this->getLeftNode() == 0 && this->getRightNode() == 0) {
-    return false;
-  } else {
-    return true;
-  }
 }

@@ -6,8 +6,8 @@
 using namespace std;
 
 AVLTree::AVLTree() {
-  Node* node = new Node(0);
-  this->setRoot(node);
+  Node* root = NULL;
+  this->setRoot(root);
   this->setHeight(0);
 }
 
@@ -20,11 +20,12 @@ AVLTree::~AVLTree() {}
 Node* AVLTree::insert(Node* visitedNode, int val) {
   Node* leftNode = visitedNode->getLeftNode();
   Node* rightNode = visitedNode->getRightNode();
-
+  std::cout << v << std::endl;
   //if visited node is null
   if (visitedNode == NULL) {
+    std::cout << "HERE" << std::endl;
     Node* newNode = new Node(val);
-    return newNode();
+    return newNode;
   }
 
   //Compare left or right nodes
@@ -37,9 +38,9 @@ Node* AVLTree::insert(Node* visitedNode, int val) {
   }
 
   //Change heights after changes
-  visitedNode->getHeight() = 1 + max(leftNode->getHeight(), rightNode->getHeight());
+  visitedNode->setHeight(1 + getMax(leftNode->getHeight(), rightNode->getHeight()));
 
-  return this->balance(visitedNode, val);
+  return balance(visitedNode, val);
 }
 
 
@@ -52,7 +53,7 @@ bool AVLTree::search(int val) {
 Node* AVLTree::balance(Node* visitedNode, int val) {
   int balanceCheck;
   Node* leftNode = visitedNode->getLeftNode();
-  Node* rightNode = vistedNode->getRightNode();
+  Node* rightNode = visitedNode->getRightNode();
   if (visitedNode == NULL) {
     balanceCheck = 0;
   } else {
@@ -74,9 +75,45 @@ Node* AVLTree::balance(Node* visitedNode, int val) {
   return visitedNode;
 }
 
-Node* AVLTree::leftRotation() {}
+Node* AVLTree::leftRotation(Node* n) {
+  Node* tempNode1 = n->getRightNode();
+  Node* tempNode2 = tempNode1->getLeftNode();
 
-Node* AVLTree::rightRotation() {}
+  //rotation
+  tempNode1->setLeftNode(n);
+  n->setRightNode(tempNode2);
+
+  //change heights
+  Node* nLeftNode = n->getLeftNode();
+  Node* nRightNode = n->getRightNode();
+  Node* tn1LeftNode = tempNode1->getLeftNode();
+  Node* tn1RightNode = tempNode1->getRightNode();
+
+  n->setHeight(getMax(nLeftNode->getHeight(), nRightNode->getHeight()) + 1);
+  tempNode1->setHeight(getMax(tn1LeftNode->getHeight(), tn1RightNode->getHeight()) + 1);
+
+  return tempNode1;
+}
+
+Node* AVLTree::rightRotation(Node* n) {
+  Node* tempNode1 = n->getLeftNode();
+  Node* tempNode2 = tempNode1->getRightNode();
+
+  //rotation
+  tempNode1->setRightNode(n);
+  n->setLeftNode(tempNode2);
+
+  //change heights
+  Node* nLeftNode = n->getLeftNode();
+  Node* nRightNode = n->getRightNode();
+  Node* tn1LeftNode = tempNode1->getLeftNode();
+  Node* tn1RightNode = tempNode1->getRightNode();
+
+  n->setHeight(getMax(nLeftNode->getHeight(), nRightNode->getHeight()) + 1);
+  tempNode1->setHeight(getMax(tn1LeftNode->getHeight(), tn1RightNode->getHeight()) + 1);
+
+  return tempNode1;
+}
 
 void AVLTree::setRoot(Node* node) {
   this->rootNode = node;
@@ -92,4 +129,12 @@ Node* AVLTree::getRoot() {
 
 int AVLTree::getHeight() {
   return height;
+}
+
+int AVLTree::getMax(int a, int b) {
+  if (a > b) {
+    return a;
+  } else if (a < b) {
+    return b;
+  }
 }

@@ -43,17 +43,17 @@ class AVLTree {
    /**
    * Checks and balances tree with the use of rotations.
    */
-   void balance();
+   Node* balance(Node* visitedNode, int val);
 
    /**
    * Left rotation algorithm.
    */
-   Node* leftRotation();
+   Node* leftRotation(Node* n);
 
    /**
    * Right rotation algorithm
    */
-   Node* rightRotation();
+   Node* rightRotation(Node* n);
 
    /**
    * Sets the passed node as the root (Could just pass the value instead maybe?)

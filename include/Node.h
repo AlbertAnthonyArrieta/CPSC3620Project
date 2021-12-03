@@ -7,6 +7,11 @@ class Node {
  public:
 
    /**
+   * Default Constructor
+   */
+   Node();
+
+   /**
    * Constructor for Node. Has 1 parameter for the value of the node.
    */
     Node(int v);
@@ -62,10 +67,10 @@ class Node {
     bool hasChildren();
 
  private:
-   int value;
-   int height;
-   Node* leftNode;
-   Node* rightNode;
+   int value = 0;
+   int height = 1;
+   Node* leftNode = NULL;
+   Node* rightNode = NULL;
 };
 
 #endif
