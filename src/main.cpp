@@ -66,25 +66,92 @@ struct Node {
     return visitedNode;
   }
 
-  // Node* remove(Node* visitedNode, int val) {
-  //
-  // }
+  Node* remove(Node* visitedNode, int val) {
+    cout << "REMOVING" << endl;
+    // Node* node = search(visitedNode, val);
+    if (visitedNode == NULL) {
+      return visitedNode;
+    }
 
-  bool search(Node* visitedNode, int val) {
-      if (visitedNode == NULL) {
-        cout << "NODE NOT FOUND" << endl;
-        return false;
-      }
+    if (visitedNode->value > val) {
+      visitedNode->left = remove(visitedNode->left, val);
+    } else if (visitedNode->value < val) {
+      visitedNode->right = remove(visitedNode->right, val);
+    } else {
 
-      if (visitedNode->value > val) {
-        return search(visitedNode->left, val);
-      } else if (visitedNode->value < val) {
-        return search(visitedNode->right, val);
-      } else if(visitedNode->value == val) {
-        cout << "NODE FOUND" << endl;
-        return true;
+      if (visitedNode->left == NULL || visitedNode->right == NULL) {
+
+        Node* tempNode = visitedNode->left ? visitedNode->left : visitedNode->right;
+
+        if (tempNode == NULL) {
+            tempNode = visitedNode;
+            visitedNode = NULL;
+        } else {
+          *visitedNode = *tempNode;
+          free(tempNode);
+        }
+
+      } else {
+        Node* tempNode = minNode(visitedNode->right);
+
+        //delete
+        visitedNode->value = tempNode->value;
+        visitedNode->right = remove(visitedNode->right, tempNode->value);
       }
     }
+
+    if (visitedNode == NULL) {
+      return visitedNode;
+    }
+
+    //change heights
+    visitedNode->height = 1 + max(visitedNode->left->getHeight(), visitedNode->right->getHeight());
+
+    //balance
+    int balanceFactor;
+    if (visitedNode == NULL) {
+      balanceFactor = 0;
+    } else {
+      cout << "Left height: " << visitedNode->left->getHeight() << endl;
+      cout << "Right height: " << visitedNode->right->getHeight() << endl;
+      balanceFactor = visitedNode->left->getHeight() - visitedNode->right->getHeight();
+    }
+
+    //rotations
+    if (balanceFactor > 1 && visitedNode->left->value >= 0) {
+      cout << "right rotation" << endl;
+      return rightRotation(visitedNode);
+    } else if (balanceFactor < -1 && visitedNode->right->value <= 0) {
+      cout << "left rotation" << "Balance factor = " << balanceFactor << endl;
+      return leftRotation(visitedNode);
+    } else if (balanceFactor > 1 && visitedNode->left->value < 0) {
+      cout << "left right rotation" << endl;
+      visitedNode->left = leftRotation(visitedNode->left);
+      return rightRotation(visitedNode);
+    } else if (balanceFactor < -1 && visitedNode->right->value > 0) {
+      cout << "right left rotation" << endl;
+      visitedNode->right = rightRotation(visitedNode->right);
+      return leftRotation(visitedNode);
+    }
+
+    return visitedNode;
+  }
+
+  // Node* search(Node* visitedNode, int val) {
+  //     if (visitedNode == NULL) {
+  //       cout << "NODE NOT FOUND" << endl;
+  //       return visitedNode;
+  //     }
+  //
+  //     if (visitedNode->value > val) {
+  //       return search(visitedNode->left, val);
+  //     } else if (visitedNode->value < val) {
+  //       return search(visitedNode->right, val);
+  //     } else {
+  //       cout << "NODE FOUND" << endl;
+  //       return visitedNode;
+  //     }
+  //   }
 
   int getHeight() {
     if (this == NULL) {
@@ -100,6 +167,16 @@ struct Node {
     } else if (a < b) {
       return b;
     }
+  }
+
+  Node* minNode(Node* node) {
+    Node* n = node;
+
+    while (n->left != NULL) {
+      n = n->left;
+    }
+
+    return n;
   }
 
   Node* leftRotation(Node* n) {
@@ -160,12 +237,14 @@ int main() {
   root = root->insert(root, 1);
 
 
-
   cout << "=========================" << endl;
   cout << "Root: " << root->value << " Height: " << root->height << endl;
   cout << "Right: " << root->right->value << endl;
   cout << "Left: " << root->left->value << endl;
   cout << "LeftLeft: " << root->right->right->value << endl;
 
-  root-> search(root, 50);
+  root = root->remove(root, 5);
+  root = root->remove(root, 3);
+  cout << "value removed? " << root->left->value << endl;
+
 }
