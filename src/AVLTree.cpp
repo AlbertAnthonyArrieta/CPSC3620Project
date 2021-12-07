@@ -203,10 +203,11 @@ bool AVLTree::search(int val) {
   if (rootNode->getValue() == val) {
     return true;
   }
-  if(searchRec(rootNode->getLeftNode(), val)) {
-    return true;
+  if (val > rootNode->getValue()) {
+    return searchRec(rootNode->getRightNode(), val);
+  } else {
+    return searchRec(rootNode->getLeftNode(), val);
   }
-  return searchRec(rootNode->getRightNode(), val);
 }
 
 bool AVLTree::searchRec(Node* n, int val) {
@@ -216,10 +217,11 @@ bool AVLTree::searchRec(Node* n, int val) {
   if (n->getValue() == val) {
     return true;
   }
-  if(searchRec(n->getLeftNode(), val)) {
-    return true;
+  if (val > n->getValue()) {
+    return searchRec(n->getRightNode(), val);
+  } else {
+    return searchRec(n->getLeftNode(), val);
   }
-  return searchRec(n->getRightNode(), val);
 }
 
 int AVLTree::getHeightTree() {
