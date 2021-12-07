@@ -1,7 +1,5 @@
 #ifndef NODE_H
 #define NODE_H
-#include <string>
-#include <iostream>
 
 class Node {
  public:
@@ -19,12 +17,12 @@ class Node {
     /**
     * Desctructor for Node.
     */
-    virtual ~Node();
+    ~Node();
 
     /**
     * Sets Node value to the integer argument passed.
     */
-    void setValue(int v);
+    void changeValue(int v);
 
     /**
     * Sets Node height to the integer argument passed.
@@ -51,26 +49,31 @@ class Node {
     */
     int getHeight();
 
+    void changeHeight(int newH);
+
     /**
     * Returns the Left Node.
     */
     Node* getLeftNode();
+
+    void changeLeftNode(Node* newNode);
 
     /**
     * Returns the Right Node.
     */
     Node* getRightNode();
 
-    /**
-    * Checks if the node has any left or right nodes.
-    */
-    bool hasChildren();
+    void changeRightNode(Node* newNode);
+
+    int getHeightTreeRec(Node* n);
+
+    int maxNode(int a, int b);
 
  private:
    int value = 0;
    int height = 1;
-   Node* leftNode = NULL;
-   Node* rightNode = NULL;
+   Node* leftNode = nullptr;
+   Node* rightNode = nullptr;
 };
 
 #endif
