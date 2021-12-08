@@ -1,7 +1,8 @@
-#include "AVLtree.cpp"
-#include "Node.cpp"
-#include <chrono>
+#include "AVLtree.h"
+#include "Node.h"
+#include <iostream>
 using namespace std;
+
 int main() {
   AVLTree* FirstAVLTree = new AVLTree();
 
@@ -101,4 +102,6 @@ int main() {
 
   std::cout << "Height of the Tree: " << FirstAVLTree->getHeightTree() << std::endl;
   std::cout << "Number of Nodes: " << FirstAVLTree->getNumNodes() << std::endl;
+
+  delete FirstAVLTree;
 }

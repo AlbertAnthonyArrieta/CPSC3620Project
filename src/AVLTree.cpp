@@ -15,6 +15,10 @@ void AVLTree::insert(int val) {
   rootNode = insertRec(rootNode, val);
 }
 
+AVLTree::~AVLTree() {
+  delete rootNode;
+}
+
 Node* AVLTree::insertRec(Node* visitedNode, int val) {
   //insert
   if (visitedNode == nullptr) {
@@ -118,7 +122,7 @@ Node* AVLTree::removeRec(Node* visitedNode, int val) {
           visitedNode = nullptr;
       } else {
         *visitedNode = *tempNode;
-        free(tempNode);
+        delete tempNode;
       }
 
     } else {

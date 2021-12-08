@@ -7,6 +7,11 @@ Node::Node(int val) {
   height = 1;
 }
 
+Node::~Node() {
+  delete leftNode;
+  delete rightNode;
+}
+
 int Node::getValue() {
   return value;
 }
