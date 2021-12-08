@@ -71,8 +71,8 @@ Node* AVLTree::leftRotation(Node* n) {
 }
 
 Node* AVLTree::rightRotation(Node* n) {
-  Node* tempNode1 = n->getLeftNode();
-  Node* tempNode2 = tempNode1->getRightNode();
+  Node* tempNode1(n->getLeftNode());
+  Node* tempNode2(tempNode1->getRightNode());
 
   //rotation
   tempNode1->changeRightNode(n);
@@ -146,14 +146,14 @@ Node* AVLTree::removeRec(Node* visitedNode, int val) {
   }
 
   //rotations
-  if (balanceFactor > 1 && visitedNode->getLeftNode()->getValue() >= 0) {
+  if (balanceFactor > 1 && visitedNode->getLeftNode()->getLeftNode() != nullptr) {
     return rightRotation(visitedNode);
-  } else if (balanceFactor < -1 && visitedNode->getRightNode()->getValue() <= 0) {
+  } else if (balanceFactor < -1 && visitedNode->getRightNode()->getRightNode() != nullptr) {
     return leftRotation(visitedNode);
-  } else if (balanceFactor > 1 && visitedNode->getLeftNode()->getValue() < 0) {
+  } else if (balanceFactor > 1 && visitedNode->getLeftNode()->getRightNode() != nullptr) {
     visitedNode->changeLeftNode(leftRotation(visitedNode->getLeftNode()));
     return rightRotation(visitedNode);
-  } else if (balanceFactor < -1 && visitedNode->getRightNode()->getValue() > 0) {
+  } else if (balanceFactor < -1 && visitedNode->getRightNode()->getLeftNode() != 0) {
     visitedNode->changeRightNode(rightRotation(visitedNode->getRightNode()));
     return leftRotation(visitedNode);
   }
@@ -171,6 +171,9 @@ Node* AVLTree::minNode(Node* node) {
 }
 
 void AVLTree::displayTree() {
+  if (rootNode == nullptr) {
+    return;
+  }
   std::cout << "|--";
   std::cout << rootNode->getValue() << std::endl;
   if (rootNode->getLeftNode() != nullptr) {
